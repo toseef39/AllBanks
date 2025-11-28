@@ -319,34 +319,32 @@ export default function HomePage() {
       {/* ===================== Bank Selection Behind Popup ===================== */}
       <div className="px-4 pt-6 pb-3">
         {/* Fixed: Single Row Layout for Bank Selection and Loan Options */}
-        <div className="flex items-start justify-evenly mb-6">
-          {/* Left Side - Headers */}
-          <div className="flex-1 mt-5">
-            <h2 className="text-[17px] font-semibold text-gray-900 mb-1">Select Bank</h2>
-            <h3 className="text-[14px] text-gray-500">Popular Loans</h3>
-          </div>
-          
-          {/* Right Side - Loan Options */}
-          <div className="flex gap-4">
-            {[
-              { id: "business", name: "Business Loan", icon: <FaBriefcase className="h-5 w-5 text-blue-500" /> },
-              { id: "personal", name: "Personal Loan", icon: <FaUser className="h-5 w-5 text-green-500" /> },
-            ].map((loan) => (
-              <div
-                key={loan.id}
-                className="flex flex-col items-center justify-center hover:scale-105 transition cursor-pointer"
-                onClick={() => alert(`${loan.name} selected`)}
-              >
-                <div className="h-10 w-10 flex items-center justify-center bg-gray-100 rounded-xl mb-1">
-                  {loan.icon}
-                </div>
-                <p className="text-[11px] text-gray-600 text-center w-16 mt-1 tracking-tight leading-tight">
-                  {loan.name}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
+       <div className="grid grid-cols-3 items-center mb-6 gap-6">
+  {/* Left Side - Headers */}
+  <div className="flex-1">
+    <h2 className="text-[17px] font-semibold text-gray-900 mb-1">Select Bank</h2>
+    <h3 className="text-[14px] text-gray-500">Popular Loans</h3>
+  </div>
+  
+  {/* Loan Options - Automatically Equal Spaced */}
+  {[
+    { id: "business", name: "Business Loan", icon: <FaBriefcase className="h-5 w-5 text-blue-500" /> },
+    { id: "personal", name: "Personal Loan", icon: <FaUser className="h-5 w-5 text-green-500" /> },
+  ].map((loan) => (
+    <div
+      key={loan.id}
+      className="flex flex-col items-center justify-center hover:scale-105 transition cursor-pointer"
+      onClick={() => alert(`${loan.name} selected`)}
+    >
+      <div className="h-10 w-10 flex items-center justify-center bg-gray-100 rounded-xl">
+        {loan.icon}
+      </div>
+      <p className="text-[11px] text-gray-600 text-center w-16 mt-2 tracking-tight leading-tight">
+        {loan.name}
+      </p>
+    </div>
+  ))}
+</div>
 
         {/* All Banks + Search */}
           <div className="mb-6 bg-gradient-to-r from-[#007A45] to-[#007A45] rounded-xl p-4 shadow-lg">
