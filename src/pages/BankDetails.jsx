@@ -80,7 +80,7 @@ export default function BankDetails() {
           <div className="text-sm text-gray-600">
             Next: Provide valid information to verify your eligibility.
           </div>
-          <button onClick={()=> navigate('/getLoan')} className="mt-2 bg-[#0A6DFE] text-white py-2.5 rounded-lg w-full hover:bg-[#0657D4] transition">
+          <button onClick={()=> navigate('/getLoan')} className="mt-2 bg-[#007A45] text-white py-2.5 rounded-lg w-full  transition">
             Continue
           </button>
         </div>
