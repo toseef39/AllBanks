@@ -134,6 +134,7 @@ const BANKS = [
   { id: "el2", name: "El 2.0 by Emirates Islamic", logo: "/banks/el2.png" },
    { id: "mashriq", name: "Mashriq Al Islamic Bank", logo: "/banks/alislamic.png" },
    { id: "abu", name: "First Abu Dhabi Bank", logo: "/banks/firstabu.jpeg" },
+    { id: "rakbank", name: "RAKBank", logo: "/banks/rakbank.png" },
    { id: "neo", name: "Mashreq Neo Bank", logo: "/banks/neo.png" },
    { id: "islamic", name: "Sharjah Islamic bank", logo: "/banks/islamic.png" },
    { id: "standard", name: "Standard chartered", logo: "/banks/standard.jpeg" },
