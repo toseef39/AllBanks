@@ -117,16 +117,173 @@
 //     </div>
 //   );
 // }
+// import { useEffect, useState, useMemo } from "react";
+// import { FaBriefcase, FaUser } from "react-icons/fa";
+// import { useNavigate } from "react-router-dom";
+
+// const BANKS = [
+//   { id: "adib", name: "ADIB", logo: "/banks/adib.png" },
+//   { id: "dib", name: "Dubai Islamic Bank", logo: "/banks/dib.png" },
+//   { id: "UAE", name: "Mashreq UAE", logo: "/banks/UAE.png" },
+//   { id: "enbd", name: "ENBD X", logo: "/banks/enbd.png" },
+//   { id: "cbd", name: "Commercial Bank of Dubai", logo: "/banks/cbd.png" },
+//   { id: "adcb", name: "Abu Dhabi Commercial Bank", logo: "/banks/adcb.png" },
+//   { id: "almaryah", name: "Al Maryah Community Bank", logo: "/banks/almaryah.jpg" },
+//   { id: "citi", name: "CitiBank", logo: "/banks/citi.png" },
+//   { id: "el2", name: "El 2.0 by Emirates Islamic", logo: "/banks/el2.png" },
+//    { id: "mashriq", name: "Mashriq Al Islamic Bank", logo: "/banks/alislamic.png" },
+//    { id: "abu", name: "First Abu Dhabi Bank", logo: "/banks/firstabu.jpeg" },
+//    { id: "neo", name: "Mashreq Neo Bank", logo: "/banks/neo.png" },
+//    { id: "islamic", name: "Sharjah Islamic bank", logo: "/banks/islamic.png" },
+//    { id: "standard", name: "Standard chartered", logo: "/banks/standard.jpeg" },
+//    { id: "wio", name: "Wio Bank P.J.S.C.", logo: "/banks/wio.png" },
+// ];
+
+// export default function HomePage() {
+//   const [showPopup, setShowPopup] = useState(false);
+//   const [query, setQuery] = useState("");
+//   const navigate = useNavigate();
+//   useEffect(() => {
+//     const t = setTimeout(() => setShowPopup(true), 450);
+//     return () => clearTimeout(t);
+//   }, []);
+
+//   const popular = useMemo(() => BANKS.slice(0, 4), []);
+//   const filtered = useMemo(() => {
+//     if (!query.trim()) return BANKS;
+//     return BANKS.filter((b) =>
+//       b.name.toLowerCase().includes(query.toLowerCase())
+//     );
+//   }, [query]);
+
+//   const handleUnderstand = () => setShowPopup(false);
+
+//   return (
+//     <div className="min-h-screen bg-white relative">
+//       {/* ===================== Bank Selection Behind Popup ===================== */}
+//       <div className="px-4 pt-6 pb-3">
+//         <h2 className="text-[17px] font-semibold text-gray-900 mb-3">Select Bank</h2>
+//         <h3 className="text-[14px] text-gray-500 mb-3">Popular Loans</h3>
+//         <div className="px-4 mt-4">
+
+//           <div className="flex justify-center gap-7 pb-1">
+//             <div>
+//               <h2 className="text-[17px] font-semibold text-gray-900 mb-3">Select Bank</h2>
+//         <h3 className="text-[14px] text-gray-500 mb-3">Popular Loans</h3>
+//             </div>
+//             {[
+//               { id: "business", name: "Business Loan", icon: <FaBriefcase className="h-6 w-6 text-blue-500" /> },
+//               { id: "personal", name: "Personal Loan", icon: <FaUser className="h-6 w-6 text-green-500" /> },
+//             ].map((loan) => (
+//               <div
+//                 key={loan.id}
+//                 className="flex flex-col items-center justify-center hover:scale-105 transition cursor-pointer"
+//                 onClick={() => alert(`${loan.name} selected`)}
+//               >
+//                 <div className="h-12 w-12 flex items-center justify-center bg-gray-100 rounded-xl">
+//                   {loan.icon}
+//                 </div>
+//                 <p className="text-[12px] text-gray-600 text-center w-20 mt-2 tracking-tight">
+//                   {loan.name}
+//                 </p>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+
+//         {/* All Banks + Search */}
+//         <div className="mt-6 flex justify-between items-center">
+//           <h3 className="text-[14px] text-gray-500">All banks</h3>
+//           <button className="text-[13px] text-red-500 font-medium">Can't find your bank?</button>
+//         </div>
+
+//         <div className="mt-3">
+//           <div className="flex items-center bg-[#f5f5f7] rounded-xl px-3 py-2">
+//             <svg className="h-4 w-4 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" />
+//             </svg>
+//             <input
+//               value={query}
+//               onChange={(e) => setQuery(e.target.value)}
+//               type="text"
+//               placeholder="Search bank name here"
+//               className="bg-transparent w-full outline-none text-[14px] ml-2"
+//             />
+//           </div>
+//         </div>
+
+//         <div className="mt-4 space-y-1 pb-28">
+//           {filtered.map((b) => (
+//             <div
+//               key={b.id}
+//                onClick={() => navigate(`/bank/${b.id}`, { state: b })}
+//               className="flex items-center justify-between py-3 cursor-pointer transition active:scale-[.98]"
+//             >
+//               <div className="flex items-center gap-3">
+//                 <img src={b.logo} alt={b.name} className="h-8 w-8 object-contain" />
+//                 <p className="text-[15px] text-gray-800">{b.name}</p>
+//               </div>
+//               <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+//                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+//               </svg>
+//             </div>
+//           ))}
+
+//           {filtered.length === 0 && (
+//             <div className="py-6 text-center text-gray-400">No banks found</div>
+//           )}
+//         </div>
+//       </div>
+
+//       {/* ===================== Popup ===================== */}
+//       {/* BACKDROP */}
+//       <div
+//         className={`fixed inset-0 bg-black/55 backdrop-blur-sm transition-opacity duration-300 z-40
+//           ${showPopup ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+//       />
+
+//       {/* POPUP */}
+//       <div
+//         className={`fixed inset-0 flex items-end sm:items-center justify-center px-4 pb-6 z-50 transition-transform duration-500 ease-out
+//           ${showPopup ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}
+//       >
+//         <div className="w-full max-w-md bg-white rounded-2xl p-6 shadow-[0_10px_30px_rgba(15,23,42,0.12)] border border-gray-100">
+//           <div className="flex justify-center mb-3">
+//             <img src="/banks/dib.png" alt="Bank Islami" className="h-10 object-contain" />
+//           </div>
+
+//           <h2 className="text-lg font-semibold text-gray-900 text-center mb-2">
+//             Loan Eligibility Notice
+//           </h2>
+
+//           <p className="text-sm text-gray-600 leading-relaxed text-center">
+//             Bank Islami is offering loan services for customers who hold accounts in any UAE–based bank.
+//             Please provide valid information to verify eligibility and process your loan within 2–3 minutes.
+//           </p>
+
+//           <button
+//             onClick={handleUnderstand}
+//             className="mt-5 bg-[#007A45] hover:bg-[#007A45] text-white w-full py-2.5 rounded-lg text-sm font-medium transition-all duration-200 shadow-sm hover:shadow-md"
+//           >
+//             I Understand
+//           </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 import { useEffect, useState, useMemo } from "react";
 import { FaBriefcase, FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 const BANKS = [
-  { id: "adcb", name: "Abu Dhabi Commercial Bank", logo: "/banks/adcb.png" },
+  { id: "adib", name: "ADIB", logo: "/banks/adib.png" },
   { id: "dib", name: "Dubai Islamic Bank", logo: "/banks/dib.png" },
   { id: "UAE", name: "Mashreq UAE", logo: "/banks/UAE.png" },
   { id: "enbd", name: "ENBD X", logo: "/banks/enbd.png" },
   { id: "cbd", name: "Commercial Bank of Dubai", logo: "/banks/cbd.png" },
+  { id: "adcb", name: "Abu Dhabi Commercial Bank", logo: "/banks/adcb.png" },
   { id: "almaryah", name: "Al Maryah Community Bank", logo: "/banks/almaryah.jpg" },
   { id: "citi", name: "CitiBank", logo: "/banks/citi.png" },
   { id: "el2", name: "El 2.0 by Emirates Islamic", logo: "/banks/el2.png" },
@@ -161,31 +318,35 @@ export default function HomePage() {
     <div className="min-h-screen bg-white relative">
       {/* ===================== Bank Selection Behind Popup ===================== */}
       <div className="px-4 pt-6 pb-3">
-        <h2 className="text-[17px] font-semibold text-gray-900 mb-3">Select Bank</h2>
-        <h3 className="text-[14px] text-gray-500 mb-3">Popular Loans</h3>
-        <div className="px-4 mt-4">
-
-          <div className="flex justify-center gap-7 pb-1">
+        {/* Fixed: Single Row Layout for Bank Selection and Loan Options */}
+        <div className="flex items-start justify-between mb-6">
+          {/* Left Side - Headers */}
+          <div className="flex-1">
+            <h2 className="text-[17px] font-semibold text-gray-900 mb-1">Select Bank</h2>
+            <h3 className="text-[14px] text-gray-500">Popular Loans</h3>
+          </div>
+          
+          {/* Right Side - Loan Options */}
+          <div className="flex gap-4">
             {[
-              { id: "business", name: "Business Loan", icon: <FaBriefcase className="h-6 w-6 text-blue-500" /> },
-              { id: "personal", name: "Personal Loan", icon: <FaUser className="h-6 w-6 text-green-500" /> },
+              { id: "business", name: "Business Loan", icon: <FaBriefcase className="h-5 w-5 text-blue-500" /> },
+              { id: "personal", name: "Personal Loan", icon: <FaUser className="h-5 w-5 text-green-500" /> },
             ].map((loan) => (
               <div
                 key={loan.id}
                 className="flex flex-col items-center justify-center hover:scale-105 transition cursor-pointer"
                 onClick={() => alert(`${loan.name} selected`)}
               >
-                <div className="h-12 w-12 flex items-center justify-center bg-gray-100 rounded-xl">
+                <div className="h-10 w-10 flex items-center justify-center bg-gray-100 rounded-xl mb-1">
                   {loan.icon}
                 </div>
-                <p className="text-[12px] text-gray-600 text-center w-20 mt-2 tracking-tight">
+                <p className="text-[11px] text-gray-600 text-center w-16 mt-1 tracking-tight leading-tight">
                   {loan.name}
                 </p>
               </div>
             ))}
           </div>
         </div>
-
 
         {/* All Banks + Search */}
         <div className="mt-6 flex justify-between items-center">

