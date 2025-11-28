@@ -319,7 +319,7 @@ export default function HomePage() {
       {/* ===================== Bank Selection Behind Popup ===================== */}
       <div className="px-4 pt-6 pb-3">
         {/* Fixed: Single Row Layout for Bank Selection and Loan Options */}
-        <div className="flex items-start justify-between mb-6">
+        <div className="flex items-start justify-evenly mb-6">
           {/* Left Side - Headers */}
           <div className="flex-1 mt-5">
             <h2 className="text-[17px] font-semibold text-gray-900 mb-1">Select Bank</h2>
