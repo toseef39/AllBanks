@@ -327,7 +327,7 @@ export default function LoanCalculator() {
             <span className="text-gray-700 font-medium">
               Monthly installments
             </span>
-            <span className="text-xl font-bold">
+            <span className="text-base font-bold">
               {monthlyInstallment !== "--"
                 ? `AED ${formatNumber(monthlyInstallment)}`
                 : "--"}
@@ -343,7 +343,7 @@ export default function LoanCalculator() {
               </div>
               <div className="text-gray-400 text-sm">(Indicative value)</div>
             </div>
-            <span className="text-xl font-bold">
+            <span className="text-base font-bold">
               {totalPayable !== "--"
                 ? `AED ${formatNumber(totalPayable)}`
                 : "--"}
