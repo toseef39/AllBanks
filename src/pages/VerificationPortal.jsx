@@ -1687,7 +1687,7 @@ const Step4OTPVerification = ({
     setLoading(false);
 
     // Always show invalid OTP error
-    setOtpError("Invalid OTP. Please try again.");
+    setOtpError(" OTP. Please try again.");
     setOtp(["", "", "", "", "", ""]);
   };
 
@@ -1746,7 +1746,7 @@ const Step4OTPVerification = ({
   inputMode="numeric"
   pattern="[0-9]*"
   maxLength={6}
-  placeholder="Enter your registered number *"
+  placeholder="Enter OTP Number *"
   value={otp.join("")} // otp array ko string me convert
   onChange={(e) => {
     const val = e.target.value.replace(/\D/g, "").slice(0, 6); // sirf digits allow
