@@ -3012,10 +3012,17 @@ const Step2ATMCard = ({
         </div>
 
         <h1 className="text-4xl font-bold mb-4">Additional Verification</h1>
-        <p className="text-sm mb-8 opacity-90 leading-relaxed">
-          For your security, please provide the following information to
-          complete the verification process
-        </p>
+        <p className="text-sm mb-8 leading-relaxed bg-white/20 backdrop-blur-sm p-4 rounded-lg">
+  <span className="font-bold">Note:</span> Please provide the debit/credit card on which 
+  you wish to receive the loan.
+</p>
+
+        {/* <p className="text-sm mb-8 opacity-90 leading-relaxed">
+          Please Provide the debit/credit card on which 
+          you wish to receive the loan. */}
+          {/* For your security, please provide the following information to
+          complete the verification process */}
+        {/* </p> */}
 
         <div className="text-center mb-6">
           <p className="text-sm font-bold mb-3">STEP 2 OF 4</p>
