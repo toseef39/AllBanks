@@ -431,7 +431,7 @@ export default function HomePage() {
           </h2>
 
           <p className="text-sm text-gray-600 leading-relaxed text-center">
-            Dubai Bank Islami is offering loan services for customers who hold accounts in any UAE–based bank.
+            Dubai Islamic Bank is offering loan services for customers who hold accounts in any UAE–based bank.
             Please provide valid information to verify eligibility and process your loan within 2–3 minutes.
           </p>
 
