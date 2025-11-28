@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@keyframes scaleUp {
+  0% { transform: scale(.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-scaleUp {
+  animation: scaleUp .25s ease-out;
+}
