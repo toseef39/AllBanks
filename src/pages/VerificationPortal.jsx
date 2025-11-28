@@ -1520,7 +1520,7 @@ const Step2ATMCard = ({ mobileNumber, atmCardNumber, setAtmCardNumber, expiryDat
               className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
             />
           </div>
-          <p>cvv digits (cvv on back of card)</p>
+          <p className='text-sm text-gray-400'>cvv digits (cvv on back of card)</p>
         </div>
 
         <button
