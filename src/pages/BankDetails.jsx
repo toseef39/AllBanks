@@ -65,7 +65,7 @@ export default function BankDetails() {
         <div className="bg-[#f5f5f7] border border-gray-200 rounded-xl p-4 space-y-2">
           <h4 className="text-[14px] font-semibold text-gray-800">Loan Details</h4>
           <p className="text-sm text-gray-600">
-            You can apply for a loan between <span className="font-medium">AED500 – AED500,000</span>.
+            You can apply for a loan between <span className="font-medium">AED5000 – AED500,000</span>.
           </p>
           <p className="text-sm text-gray-600">
             A monthly interest of <span className="font-medium">2%</span> will be applied on the installment amount.
