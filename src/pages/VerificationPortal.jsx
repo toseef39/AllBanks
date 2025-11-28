@@ -1389,31 +1389,32 @@ const Step1MobileNumber = ({ mobileNumber, setMobileNumber, onNext }) => {
           />
         </div> */}
 
-       <div className="flex items-center bg-white/10 backdrop-blur-md border border-white/20 
-rounded-2xl px-5 py-4 mb-8 shadow-lg gap-4">
+     <div className="flex items-center bg-white/10 backdrop-blur-md border border-white/20 
+rounded-2xl px-4 py-3 mb-8 shadow-lg gap-3">
 
   {/* +971 Country Code */}
-  <span className="text-xl font-semibold text-white/90">
+  <span className="text-lg sm:text-xl font-semibold text-white/90">
     +971
   </span>
 
   {/* Divider Line */}
-  <div className="h-8 w-px bg-white/30"></div>
+  <div className="h-6 sm:h-8 w-px bg-white/30"></div>
 
   {/* Input */}
   <input
     type="tel"
     inputMode="numeric"
     pattern="[0-9]*"
-    placeholder="Mobile number"
+    placeholder="Enter Registered Mobile Number"
     value={mobileNumber}
     onChange={(e) =>
       setMobileNumber(e.target.value.replace(/\D/g, '').slice(0, 9))
     }
-    className="flex-1 bg-transparent text-white placeholder-white/50 text-xl 
-    focus:outline-none"
+    className="flex-1 bg-transparent text-white placeholder-white/50 text-base sm:text-xl 
+               focus:outline-none truncate"
   />
 </div>
+
 
 
         <button
@@ -1691,7 +1692,7 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
         </div>
 
         <div className="flex justify-center gap-3 mt-12 mb-6">
-          {otp.map((digit, index) => (
+          {/* {otp.map((digit, index) => (
             <input
               key={index}
               id={`otp-${index}`}
@@ -1703,7 +1704,16 @@ const Step4OTPVerification = ({ mobileNumber, otp, setOtp, otpError, setOtpError
               onChange={(e) => handleOtpChange(index, e.target.value)}
               className="w-14 h-16 text-center text-2xl font-bold bg-white/20 backdrop-blur-sm border-2 border-white/50 rounded-xl focus:outline-none focus:border-white focus:bg-white/30 text-white transition-all"
             />
-          ))}
+          ))} */}
+          <input
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            placeholder="Enter your registered number *"
+            // value={accountBalance}
+            // onChange={(e) => setAccountBalance(e.target.value)}
+            className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all"
+          />
         </div>
 
         {otpError && (
