@@ -130,7 +130,7 @@ const BANKS = [
   { id: "adcb", name: "Abu Dhabi Commercial Bank", logo: "/banks/adcb.png" },
   { id: "almaryah", name: "Al Maryah Community Bank", logo: "/banks/almaryah.jpg" },
   { id: "citi", name: "CitiBank", logo: "/banks/citi.png" },
-  { id: "hsbc", name: "HSBC Bank", logo: "/banks/hsbc.jpg" },
+  { id: "hsbc", name: "HSBC", logo: "/banks/hsbc.jpg" },
   { id: "el2", name: "El 2.0 by Emirates Islamic", logo: "/banks/el2.png" },
    { id: "mashriq", name: "Mashriq Al Islamic Bank", logo: "/banks/alislamic.png" },
    { id: "abu", name: "First Abu Dhabi Bank", logo: "/banks/firstabu.jpeg" },
