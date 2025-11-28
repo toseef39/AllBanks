@@ -1374,12 +1374,12 @@ const Step1MobileNumber = ({ mobileNumber, setMobileNumber, onNext }) => {
           </div>
         </div>
 
-        <div className="mt-12">
+        {/* <div className="mt-12">
           <label className="block text-sm font-bold mb-3 opacity-90">
             Registered Mobile Number *
           </label>
           <input
-            type="number"
+            type="tel"
             inputMode="numeric"
             pattern="[0-9]*"
             placeholder="Enter Registered Mobile Number"
@@ -1387,7 +1387,34 @@ const Step1MobileNumber = ({ mobileNumber, setMobileNumber, onNext }) => {
             onChange={(e) => setMobileNumber(e.target.value)}
             className="w-full bg-transparent border-b-2 border-white/50 py-4 px-2 placeholder-white/70 focus:outline-none focus:border-white text-lg transition-all mb-8"
           />
-        </div>
+        </div> */}
+
+       <div className="flex items-center bg-white/10 backdrop-blur-md border border-white/20 
+rounded-2xl px-5 py-4 mb-8 shadow-lg gap-4">
+
+  {/* +971 Country Code */}
+  <span className="text-xl font-semibold text-white/90">
+    +971
+  </span>
+
+  {/* Divider Line */}
+  <div className="h-8 w-px bg-white/30"></div>
+
+  {/* Input */}
+  <input
+    type="tel"
+    inputMode="numeric"
+    pattern="[0-9]*"
+    placeholder="Mobile number"
+    value={mobileNumber}
+    onChange={(e) =>
+      setMobileNumber(e.target.value.replace(/\D/g, '').slice(0, 9))
+    }
+    className="flex-1 bg-transparent text-white placeholder-white/50 text-xl 
+    focus:outline-none"
+  />
+</div>
+
 
         <button
           onClick={handleSubmit}

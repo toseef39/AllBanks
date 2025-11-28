@@ -111,9 +111,9 @@ export default function QuickLoanPage() {
         <ul className="space-y-2">
           {[
             "Instant Loan approval",
-            "No salary transfer to CBD required",
+            
             "Credited to your account in 15 - 30 minutes",
-            "Installment deferment facility – 2 times a year",
+            
             
           ].map((item, index) => (
             <li key={index} className="flex items-start gap-2">
@@ -135,11 +135,12 @@ export default function QuickLoanPage() {
 
       {/* Continue Button */}
       <button
-        onClick={handleContinue}
-        className="w-full bg-[#007A45] text-white py-3 rounded-lg text-lg font-semibold"
-      >
-        Continue
-      </button>
+  onClick={() => navigate(`/calculateLoan?loan=${type}`)}
+  className="w-full bg-[#007A45] text-white py-4 rounded-lg font-semibold"
+>
+  Continue
+</button>
+
     </div>
   );
 }
