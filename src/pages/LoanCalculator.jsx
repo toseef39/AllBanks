@@ -323,18 +323,16 @@ export default function LoanCalculator() {
 
         {/* Results */}
         <div className="bg-gray-50 rounded-lg p-6 space-y-4 mb-6">
-  <div className="flex items-center justify-between gap-4">
-    <span className="text-gray-700 font-medium">
-      Monthly installments
-    </span>
-    <span className="text-base font-bold">
-      {monthlyInstallment !== "--"
-        ? `AED ${formatNumber(monthlyInstallment)}`
-        : "--"}
-    </span>
-  </div>
-</div>
-
+          <div className="flex items-center justify-between">
+            <span className="text-gray-700 font-medium">
+              Monthly installments
+            </span>
+            <span className="text-base px-12 font-bold">
+              {monthlyInstallment !== "--"
+                ? `AED ${formatNumber(monthlyInstallment)}`
+                : "--"}
+            </span>
+          </div>
 
           <div className="border-t border-gray-200"></div>
 
