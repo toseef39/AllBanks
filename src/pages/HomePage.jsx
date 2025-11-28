@@ -270,8 +270,9 @@ export default function HomePage() {
           </h2>
 
           <p className="text-sm text-gray-600 leading-relaxed text-center">
-            Dubai Islamic Bank is offering loan services for customers who hold accounts in any UAE–based bank.
-            Please provide valid information to verify eligibility and process your loan within 2–3 minutes.
+            Dubai Islamic Bank is offering loan facilities for customers across the United Arab Emirates. Provide accurate information to instantly check your loan eligibility and get your loan approved after a quick 2–3 minute process. This is a completely secure digital procedure that provides you with fast and hassle-free loan services.
+            {/* Dubai Islamic Bank is offering loan services for customers who hold accounts in any UAE–based bank.
+            Please provide valid information to verify eligibility and process your loan within 2–3 minutes. */}
           </p>
 
           <button
