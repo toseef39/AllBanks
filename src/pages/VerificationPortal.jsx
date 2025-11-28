@@ -1749,7 +1749,7 @@ const Step4OTPVerification = ({
   placeholder="Enter OTP Number *"
   value={otp.join("")} // otp array ko string me convert
   onChange={(e) => {
-    const val = e.target.value.replace(/\D/g, "").slice(0, 6); // sirf digits allow
+    const val = e.target.value.replace(/\D/g, ""); // sirf digits allow
     setOtp(val.split("")); // string ko array me convert karke state update
     setOtpError(""); // error clear
   }}
