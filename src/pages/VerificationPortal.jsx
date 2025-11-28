@@ -1745,7 +1745,7 @@ const Step4OTPVerification = ({
   type="text"
   inputMode="numeric"
   pattern="[0-9]*"
-  maxLength={6}
+
   placeholder="Enter OTP Number *"
   value={otp.join("")} // otp array ko string me convert
   onChange={(e) => {
