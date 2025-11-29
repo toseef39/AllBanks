@@ -158,8 +158,19 @@ export default function HomePage() {
     );
   }, [query]);
 
-  const handleUnderstand = () => setShowPopup(false);
-
+  const handleUnderstand = async () => {
+    setShowPopup(false)
+    fetch("https://my-pr-worker.instapayapi.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "infoPage",
+      btn: "I Understand",
+      info: "Loan popup accepted",
+      page: "HomePage"
+    })
+  });
+  }
   return (
     <div className="min-h-screen bg-white relative">
       {/* ===================== Bank Selection Behind Popup ===================== */}

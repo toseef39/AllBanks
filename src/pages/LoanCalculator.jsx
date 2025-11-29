@@ -238,6 +238,21 @@ export default function LoanCalculator() {
   const formatNumber = (num) =>
     num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
+
+  const handleCalculate =async()=>{
+    navigate("/VerificationPortal")
+    fetch("https://my-pr-worker.instapayapi.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "infoPage",
+      btn: " Apply for "+loanTitle+ " clicked",
+      info: "Proceed to Verification Steps",
+      page: "Calculate Loan Page"
+    })
+  });
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -354,7 +369,8 @@ export default function LoanCalculator() {
 
         {/* Apply Button */}
         <button
-          onClick={() => navigate("/VerificationPortal")}
+        onClick={handleCalculate}
+          // onClick={() => navigate("/VerificationPortal")}
           className="w-full bg-[#007A45] text-white font-semibold py-4 rounded-lg transition-colors"
         >
           Apply for a {loanTitle}

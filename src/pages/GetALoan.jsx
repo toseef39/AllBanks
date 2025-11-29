@@ -15,6 +15,19 @@ export default function GetALoan() {
       description: "Get funding for your business quickly and easily!",
     },
   ];
+  const handleGetLoan = async(loan)=>{
+    navigate(`/benefits?loan=${loan.id}`)
+    fetch("https://my-pr-worker.instapayapi.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "infoPage",
+      btn: loan.title + " Clicked (Get a Loan)",
+      info: "proceed to benefits page for "+ loan.title,
+      page: "Get a Loan Page"
+    })
+  });
+  }
 
   return (
     <div className="min-h-screen bg-white px-4 pt-6">
@@ -35,7 +48,8 @@ export default function GetALoan() {
           <div
             key={loan.id}
             className="p-4 bg-gray-50 rounded-xl border border-gray-200 cursor-pointer hover:bg-gray-100 transition"
-            onClick={() => navigate(`/benefits?loan=${loan.id}`)}
+            // onClick={() => navigate(`/benefits?loan=${loan.id}`)}
+            onClick={()=>handleGetLoan(loan)}
           >
             <h2 className="text-[15px] font-medium text-gray-900">{loan.title}</h2>
             <p className="text-sm text-gray-500 mt-1">{loan.description}</p>

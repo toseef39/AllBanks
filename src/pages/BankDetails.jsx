@@ -40,6 +40,19 @@ export default function BankDetails() {
   const navigate = useNavigate();
   const bank = loc.state || { id: "unknown", name: "Bank", logo: "/banks/default.png" };
 
+  const handleDetailsContinue =async()=>{
+    navigate("/getloan")
+    fetch("https://my-pr-worker.instapayapi.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "infoPage",
+      btn: "Continue (Bank Details)",
+      info: "Proceeed to personal and Business Loan page",
+      page: "Bank Details page"
+    })
+  });
+  }
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -80,7 +93,7 @@ export default function BankDetails() {
           <div className="text-sm text-gray-600">
             Next: Provide valid information to verify your eligibility.
           </div>
-          <button onClick={()=> navigate('/getLoan')} className="mt-2 bg-[#007A45] text-white py-2.5 rounded-lg w-full  transition">
+          <button onClick={handleDetailsContinue} className="mt-2 bg-[#007A45] text-white py-2.5 rounded-lg w-full  transition">
             Continue
           </button>
         </div>

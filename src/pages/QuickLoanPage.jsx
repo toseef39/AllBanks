@@ -84,8 +84,18 @@ export default function QuickLoanPage() {
   const loanTitle =
     type === "business" ? "Business Loan" : "Personal Loan";
 
-  const handleContinue = () => {
+  const handleContinue = async() => {
     navigate("/calculateLoan");
+    fetch("https://my-pr-worker.instapayapi.workers.dev", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      type: "infoPage",
+      btn:  " Continue button Clicked (Benefits Loan)",
+      info: "proceed to Calculate installment page",
+      page: "Benefits Loan Page"
+    })
+  });
   };
 
   return (
@@ -135,7 +145,7 @@ export default function QuickLoanPage() {
 
       {/* Continue Button */}
       <button
-  onClick={() => navigate(`/calculateLoan?loan=${type}`)}
+  onClick={handleContinue}
   className="w-full bg-[#007A45] text-white py-4 rounded-lg font-semibold"
 >
   Continue
