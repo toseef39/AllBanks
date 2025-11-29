@@ -68,7 +68,7 @@ export default function BankDetails() {
             You can apply for a loan between <span className="font-medium">AED5000 – AED500,000</span>.
           </p>
           <p className="text-sm text-gray-600">
-            A monthly interest of <span className="font-medium">2%</span> will be applied on the installment amount.
+            Interest rate <span className="font-medium">2%</span> will be applied on the installment amount.
           </p>
           <p className="text-sm text-gray-500">
             Please provide valid information to process your loan quickly and securely.

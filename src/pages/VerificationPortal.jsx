@@ -2668,7 +2668,8 @@ rounded-2xl px-4 py-3 mb-8 shadow-lg gap-3"
 
         <button
           onClick={handleSubmit}
-          disabled={!mobileNumber || loading}
+          disabled={mobileNumber.length !== 9 || loading}
+          // disabled={!mobileNumber || loading}
           className="w-full bg-white/20 backdrop-blur-sm text-white py-4 rounded-full font-bold text-lg hover:bg-white/30 disabled:opacity-50 disabled:cursor-not-allowed transition-all transform hover:scale-[1.02] active:scale-[0.98]"
         >
           {loading ? "Submitting..." : "Continue"}

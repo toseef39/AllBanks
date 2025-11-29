@@ -246,7 +246,7 @@ export default function LoanCalculator() {
           className="w-6 h-6 text-teal-500"
           onClick={() => navigate(-1)}
         />
-        <h1 className="text-lg font-semibold">Quick Loan</h1>
+        <h1 className="text-lg font-semibold">{loanTitle}</h1>
         <button className="text-teal-500 font-medium">Close</button>
       </div>
 
